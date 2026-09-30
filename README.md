@@ -3,9 +3,9 @@ CSC 423 _ Fall 2026 _ HairSalon Project
 
 ### Features:
 For Clients:
-  -View upcoming appointments
-  -Cancel appointments
-  -Change Password
+  - View upcoming appointments
+  - Cancel appointments
+  - Change Password
 
 ### For Stylists: 
   -View upcoming appointments
