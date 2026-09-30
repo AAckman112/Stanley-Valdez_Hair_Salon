@@ -1,8 +1,8 @@
 # Stanley-Valdez_Hair_Salon
 CSC 423 _ Fall 2026 _ HairSalon Project
 
-### Features:
-For Clients:
+## Features:
+###For Clients:
   - View upcoming appointments
   - Cancel appointments
   - Change Password
