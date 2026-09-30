@@ -8,15 +8,15 @@ For Clients:
   - Change Password
 
 ### For Stylists: 
-  -View upcoming appointments
-  -Manage profile settings
-  -Cancel appointments
-  -Change specialty
+  - View upcoming appointments
+  - Manage profile settings
+  - Cancel appointments
+  - Change specialty
 
 ### For Administrators:
-  -Full user management (create, read, update, delete)
-  -Appointment management and oversight
-  -Complete access control
+  - Full user management (create, read, update, delete)
+  - Appointment management and oversight
+  - Complete access control
 
 
 ### A Few User Stories: 
