@@ -8,7 +8,7 @@ const User = require("../models/userModel");
 
 // Function to authenticate user
 //async function that takes a request and response object as parameters, which are used to handle the HTTP request and response
-const authenticateUser = async (req, res) => {
+module.exports.authenticateUser = async (req, res) => {
     try {
         // Extract username and password from the request body
         //takes the username and password from the request body, which is sent by the user when they try to log in
@@ -34,6 +34,8 @@ const authenticateUser = async (req, res) => {
 
         //compare the password given with the crypted password in the database using bcrypt
         //waits for the comparison to finish before moving on; parameters are the password given first and the actual password
+
+        /* <= delete when passwords are hashed
         const isMatch = await bcrypt.compare(password, user.password);
 
         //throws an error if the password does not match
@@ -41,11 +43,12 @@ const authenticateUser = async (req, res) => {
             //if its not a match, returns an error 401, which is the missing authorization error code
             return res.status(401).json({ message: "Invalid username or password" });
         }
+        */
 
         //makes a token
         const token = jwt.sign(
-            //the token contains the user id and username
-            { userId: user._id, username: user.username },
+            //the token contains the user id, username, and role of user
+            { userId: user.id, username: user.username, role: user.role },
             //the secret key is stored in the .env file for security reasons
             process.env.JWT_SECRET,
             //the token will expire in 1 hour

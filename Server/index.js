@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 //express is the (router) backend server
 const express = require("express");
+//importing the authentication routes from the authRoutes.js file
+const authRoutes = require("./routes/authRoutes");
 
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
@@ -20,6 +22,9 @@ app.use(express.json());
 //says that all the html files will be in this folder
 //when getting to react this will be commented out
 app.use(express.static(path.join(__dirname, "../client/public")));
+
+//all authentication routes will have the form /api/auth/...
+app.use("/api/auth", authRoutes);
 
 //connects to the mongo database using the MONGO_URI
 mongoose.connect(MONGO_URI)
