@@ -317,6 +317,12 @@
               message.textContent = "Signed in successfully.";
               sessionStorage.setItem("authToken", data.token);
               // Use data.role to choose where to send the user next.
+
+              switch (data.role) {
+                case "admin": window.location.href = "dashboardAdmin.html"; break;
+                case "artist": window.location.href = "dashboardArtist.html"; break;
+                case "client": window.location.href = "dashboardClient.html"; break;
+              }
             } catch (error) {
               message.textContent = "Could not connect to the server.";
             }
