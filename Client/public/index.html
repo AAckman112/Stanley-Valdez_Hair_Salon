@@ -263,13 +263,13 @@
     </header>
  
     <main>
-      <form class="card" onsubmit="event.preventDefault()">
+      <form class="card" id="login-form">
         <h1>Welcome back</h1>
         <p class="sub">Sign in to manage your reservations, salon profile, and preferred stylist settings.</p>
  
         <div class="field">
-          <label for="email">Email address</label>
-          <input id="email" type="email" placeholder="salon.guest@example.com" autocomplete="email">
+          <label for="username">Username</label>
+          <input id="username" type="text" placeholder="Enter your username">
         </div>
  
         <div class="field">
@@ -289,6 +289,39 @@
           Remember me on this device
         </label>
  
+        <p id="login-message" role="status"></p>
+        <script>
+          const form = document.getElementById("login-form");
+          const message = document.getElementById("login-message");
+        
+          form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+        
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+        
+            try {
+              const response = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+              });
+        
+              const data = await response.json();
+        
+              if (!response.ok) {
+                message.textContent = data.message || "Sign-in failed.";
+                return;
+              }
+        
+              message.textContent = "Signed in successfully.";
+              sessionStorage.setItem("authToken", data.token);
+              // Use data.role to choose where to send the user next.
+            } catch (error) {
+              message.textContent = "Could not connect to the server.";
+            }
+          });
+        </script>
         <button class="submit" type="submit">Sign in to Atelier</button>
         <p class="signup">First time visiting? <a href="#">Create an account</a></p>
       </form>
