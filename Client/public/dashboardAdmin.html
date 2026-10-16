@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Client Dashboard</title>
+  <title>Admin Dashboard</title>
   <link rel="stylesheet" href="dashBoard.css">
 </head>
 <!-- I didnt really fill anything in since we would need the actual data for it and connect it with actual javascript so this is the barebones -->
@@ -15,13 +15,12 @@
       <a href="#" class="active">Overview</a>
       <a href="#">Appointments</a>
       <a href="#">Gallery</a>
-      <a href="#">Stylists</a>
+      <a href="#">Users</a>
     </nav>
 
     <div>
       <span>User Name</span>
 	  <a href="#" class="btn-light">Settings</a>
-      <a href="#" class="btn-primary">Book Appointment</a>
 	  
     </div>
   </header>
@@ -32,12 +31,13 @@
     <!-- L Col -->
     <div>
 
-      <h1>Welcome back, Client</h1>
+      <h1>Welcome back, Admin</h1>
       <p>View details, manage appointments, or adjust your preferences.</p>
 
       <!-- Appointment card -->
       <section class="appointment-card">
         <div>
+          <span>Up Next: </span> 
           <span>Status</span>
           <span>Reservation #</span>
         </div>
@@ -50,12 +50,10 @@
         </div>
 
         <div class="appointment-stylist">
-          <img src="" alt="Stylist photo">
-          <div>
             <p>Stylist Name</p>
-            <p>Stylist Title</p>
-          </div>
-          <p>Location</p>
+            <p>Client Name</p>
+            <p>Client Contact</p>
+            <p>Client Preferences</p>
         </div>
 
         <div>
@@ -67,7 +65,7 @@
       <!-- History -->
       <section>
         <h2>History</h2>
-        <p>Your past appointments.</p>
+        <p>Appointments Completed in the last 24 hours: </p>
 
         <table>
           <thead>
@@ -75,6 +73,7 @@
               <th>Date &amp; Time</th>
               <th>Services</th>
               <th>Stylist</th>
+              <th>Client</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -82,19 +81,22 @@
             <tr>
               <td>Date</td>
               <td>Service</td>
-              <td>Stylist</td>
+              <td>Stylist</td>  
+              <td>Client</td>
               <td><a href="#">Rebook</a></td>
             </tr>
             <tr>
               <td>Date</td>
               <td>Service</td>
               <td>Stylist</td>
+              <td>Client</td>
               <td><a href="#">Rebook</a></td>
             </tr>
             <tr>
               <td>Date</td>
               <td>Services</td>
               <td>Stylist</td>
+              <td>Client</td>
               <td><a href="#">Rebook</a></td>
             </tr>
           </tbody>
@@ -102,55 +104,6 @@
       </section>
 
     </div>
-
-    <!-- R Col -->
-    <aside>
-	
-<!-- I dont know what to put on these lowkey im just following the figma -->
-      <!-- Stylist profile? -->
-      <section>
-        <h2>Stylist Profile</h2>
-        <p>Preferred Stylists</p>
-
-        <div class="card">
-          <div>
-            <img src="" alt="Stylist photo">
-            <div>
-              <p>Stanley Valdez</p>
-              <p>Founder and Stylist</p>
-            </div>
-          </div>
-
-          <p>Specializes in cutting hair.</p>
-
-          
-        </div>
-      </section>
-
-      <!-- Saved -->
-      <section>
-        <h2>Saved Services</h2>
-        <p>Your favorites</p>
-
-        <div class="card">
-          <div>
-            <h3>Signature Cut</h3>
-            <span>50 mins</span>
-          </div>
-          <p>Have our stylists give you the signature Stanley cut.</p>
-          <a href="#" class="btn-outline">Book</a>
-        </div>
-
-        <div class="card">
-          <div>
-            <h3>Cut and Color</h3>
-            <span>1-2 hours</span>
-          </div>
-          <p>Our professional stylists will provide the signature cut, then color to the client's liking!</p>
-          <a href="#" class="btn-outline">Book</a>
-        </div>
-      </section>
-    </aside>
   </main>
 
 
