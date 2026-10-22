@@ -21,7 +21,7 @@ app.use(express.json());
 
 //says that all the html files will be in this folder
 //when getting to react this will be commented out
-app.use(express.static(path.join(__dirname, "../client/public")));
+app.use(express.static(path.join(__dirname, "../Client/public")));
 
 //all authentication routes will have the form /api/auth/...
 app.use("/api/auth", authRoutes);
@@ -39,7 +39,7 @@ mongoose.connect(MONGO_URI)
 //telling the router to get user starting req/res 
 app.get("/", (req, res) => {
     //then send the response back to the start page  
-    res.sendFile(path.join(__dirname, "../client/public/index.html"));
+    res.sendFile(path.join(__dirname, "../Client/public/index.html"));
 });
 
 //if no landing page, send a 404 error
