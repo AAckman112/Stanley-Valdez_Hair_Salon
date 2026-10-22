@@ -1,0 +1,240 @@
+:root {
+    --bg: #faf8f4;
+    --ink: #1c1917;
+    --muted: #6b6560;
+    --line: #e7e2da;
+    --brown: #5c4435;
+    --brown-dark: #4a3629;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+ 
+  /* ---------- Left ---------- */
+  .left {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 60px 28px;
+    min-height: 100vh;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .brand {
+    font-family: "Instrument Serif", serif;
+    font-size: 24px;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand small {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-size: 7px;
+    letter-spacing: .12em;
+    margin-top: 3px;
+    color: var(--muted);
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    background: var(--white);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background .2s;
+  }
+  .back:hover { background: #f1ede6; }
+  .back svg { width: 10px; height: 10px; }
+ 
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    width: 100%;
+    max-width: 430px;
+    padding: 0 0 0 0;
+  }
+  h1 {
+    font-family: "Instrument Serif", serif;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -.01em;
+    margin-bottom: 14px;
+  }
+  .sub {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 330px;
+  }
+  .row { display: flex; justify-content: space-between; align-items: baseline; }
+  label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .forgot {
+    font-size: 10px;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .field { position: relative; margin-bottom: 22px; }
+  input[type=email], input[type=password], input[type=text] {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font: inherit;
+    font-size: 12px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  input::placeholder { color: #9a948d; }
+  input:focus { border-color: var(--brown); box-shadow: 0 0 0 3px rgba(92,68,53,.12); }
+  .eye {
+    position: absolute;
+    right: 14px;
+    bottom: 13px;
+    width: 20px; height: 20px;
+    background: none; border: 0; cursor: pointer;
+    color: var(--muted);
+  }
+  .eye svg { width: 100%; height: 100%; }
+ 
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--muted);
+    margin: -2px 0 26px;
+    cursor: pointer;
+  }
+  .remember input { position: absolute; opacity: 0; pointer-events: none; }
+  .box {
+    width: 16px; height: 16px;
+    border: 1.2px solid var(--brown);
+    border-radius: 3px;
+    display: grid; place-items: center;
+    background: var(--white);
+  }
+  .box svg { width: 10px; height: 10px; opacity: 0; color: var(--brown); }
+  .remember input:checked + .box svg { opacity: 1; }
+  .remember input:focus-visible + .box { box-shadow: 0 0 0 3px rgba(92,68,53,.2); }
+ 
+  .submit {
+    width: 100%;
+    height: 48px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--brown);
+    color: #fff;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .submit:hover { background: var(--brown-dark); }
+  .signup {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 22px;
+  }
+  .signup a { color: var(--ink); font-weight: 600; text-underline-offset: 2px; }
+ 
+  footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--muted);
+  }
+  footer nav { display: flex; gap: 14px; }
+  footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+ 
+  /* ---------- Right ---------- */
+  .right { padding: 46px 16px 46px 16px; background: var(--bg); }
+  .visual {
+    position: relative;
+    height: 100%;
+    min-height: 560px;
+    border-radius: 22px;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 80% at 70% 20%, #3b3430 0%, rgba(59,52,48,0) 60%),
+      radial-gradient(90% 70% at 20% 90%, #6d4f3c 0%, rgba(109,79,60,0) 65%),
+      linear-gradient(160deg, #1a1614, #0b0908);
+       background: url("Images/Stan_Trunk.png") center / cover no-repeat;
+  }
+  .quote {
+    position: absolute;
+    left: 34px; right: 34px; bottom: 34px;
+    max-width: 330px;
+    padding: 24px 28px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #fff;
+  }
+  .quote p {
+    font-family: "Instrument Serif", serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .quote .by {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .quote .by::before { content: ""; width: 20px; height: 1px; background: rgba(255,255,255,.7); }
+ 
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .page { grid-template-columns: 1fr; }
+    .right { display: none; }
+    .left { padding: 28px 20px 20px; }
+    h1 { font-size: 38px; }
+  }
