@@ -37,13 +37,16 @@ module.exports.authenticateUser = async (req, res) => {
 
         /* <= delete when passwords are hashed
         const isMatch = await bcrypt.compare(password, user.password);
+        */
+       
+        const isMatch = password === user.password;
 
         //throws an error if the password does not match
         if(!isMatch) {
             //if its not a match, returns an error 401, which is the missing authorization error code
             return res.status(401).json({ message: "Invalid username or password" });
         }
-        */
+        
 
         //makes a token
         const token = jwt.sign(
