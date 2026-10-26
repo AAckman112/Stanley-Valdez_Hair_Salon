@@ -7,6 +7,7 @@ const express = require("express");
 //importing the authentication routes from the authRoutes.js file
 const authRoutes = require("./routes/authRoutes");
 
+//dotenv allows for the use of environment variables in the .env file
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 //storing the express server in a variable to activate later
