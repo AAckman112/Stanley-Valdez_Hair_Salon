@@ -1,0 +1,27 @@
+{
+  "name": "stanley-valdez_hair_salon",
+  "version": "1.0.0",
+  "description": "CSC 423 _ Fall 2026 _ HairSalon Project",
+  "main": "index.js",
+  "scripts": {
+     "server": "npm run dev --prefix Server",
+     "client": "npm run dev --prefix Client",
+     "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AAckman112/Stanley-Valdez_Hair_Salon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AAckman112/Stanley-Valdez_Hair_Salon/issues"
+  },
+  "homepage": "https://github.com/AAckman112/Stanley-Valdez_Hair_Salon#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
