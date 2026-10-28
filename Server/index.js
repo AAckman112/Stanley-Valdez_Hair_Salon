@@ -6,6 +6,8 @@ const path = require("path");
 const express = require("express");
 //importing the authentication routes from the authRoutes.js file
 const authRoutes = require("./routes/authRoutes");
+//importing the cors package to allow react to acces the backend
+const cors = require("cors");
 
 //dotenv allows for the use of environment variables in the .env file
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
@@ -19,6 +21,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 //turns on the express server; makes the connection
 app.use(express.json());
+app.use(cors());
 
 //says that all the html files will be in this folder
 //when getting to react this will be commented out
@@ -36,6 +39,11 @@ mongoose.connect(MONGO_URI)
         console.log("Could not connect to MongoDB", error);
         process.exit(1);
     })
+
+
+    app.get('/api/data', (req, res) => {
+        res.json({ message: "Hello from the Express server!" });
+    });
 
 //telling the router to get user starting req/res 
 app.get("/", (req, res) => {
