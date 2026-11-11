@@ -34,3 +34,14 @@ const form = document.getElementById("login-form");
               message.textContent = "Could not connect to the server.";
             }
           });
+
+          
+function logout() {
+  //removes the authToken from localStorage
+  localStorage.removeItem("authToken");
+
+  console.log("Logged out successfully.");
+
+  //redirects the user to the login page
+  window.location.href = "index.html";
+}

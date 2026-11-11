@@ -21,7 +21,7 @@ module.exports.authenticateUser = async (req, res) => {
             return res.status(400).json({ message: "Username and password are required" });
         }
 
-        // finding the user in the database by their username
+        //finding the user in the database by their username
         //waits for the database to return the user before moving on; parameter is the username entered by the user
         const user = await User.findOne({ username });
 
@@ -32,16 +32,16 @@ module.exports.authenticateUser = async (req, res) => {
             return res.status(401).json({ message: "Invalid username or password" });
         }
 
-        //compare the password given with the crypted password in the database using bcrypt
-        //waits for the comparison to finish before moving on; parameters are the password given first and the actual password
-
-        /* <= delete when passwords are hashed
+        //compare the password given with the encrypted password in the database using bcrypt
+        //waits for the comparison to finish before moving on; parameters are the password given first and the actual password        
         const isMatch = await bcrypt.compare(password, user.password);
-        */
-       
-        const isMatch = password === user.password;
+
+        //all passwords are now hashed, keeping this for the memories
+        //const isMatch = password === user.password;
 
         //throws an error if the password does not match
+
+
         if(!isMatch) {
             //if its not a match, returns an error 401, which is the missing authorization error code
             return res.status(401).json({ message: "Invalid username or password" });

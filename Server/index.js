@@ -7,6 +7,7 @@ const express = require("express");
 //importing the authentication routes from the authRoutes.js file
 const authRoutes = require("./routes/authRoutes");
 
+//dotenv allows for the use of environment variables in the .env file
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 //storing the express server in a variable to activate later
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, "../Client/public")));
 
 //all authentication routes will have the form /api/auth/...
 app.use("/api/auth", authRoutes);
+app.use("/api/users", require("./routes/userRoutes"));
 
 //connects to the mongo database using the MONGO_URI
 mongoose.connect(MONGO_URI)
