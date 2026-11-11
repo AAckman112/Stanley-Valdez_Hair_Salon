@@ -14,7 +14,8 @@ router.get("/", tokenValidator, getAllUsers);
 router.get("/:id", tokenValidator, getUser);
 //uses PUT request to the /api/users/:id endpoint to update a specific user
 router.put("/:id", tokenValidator, updateUser);
-//router.put("/:id", tokenValidator, changePassword);
+//uses PUT request to the /api/users/:id/change-password endpoint to change a specific user's password
+router.put("/:id/change-password", tokenValidator, changePassword);
 //uses DELETE request to the /api/users/:id endpoint to delete a specific user
 router.delete("/:id", tokenValidator, deleteUser);
 
