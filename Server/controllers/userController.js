@@ -96,33 +96,60 @@ module.exports.getUser = async (req, res) => {
     }
 };
 
-//password change function (doesn't work yet)
-/*
+//password change function
 module.exports.changePassword = async (req, res) => {
     try{
         //gets the user id
-        const userId = req.user.userId;
-
-        //gets the new password from the request body
-        const { newPassword } = req.body;
-
-        //hashes the new password
-        const hashPass = await bcrypt.hash(newPassword, 10);
-
-        //finds the user in the database by their id
-        const user = await User.findById(userId);
-
+        const requester = req.user;
+        const userId = req.params.id;
+        
+        //tries to find the user by their MongoDB id
+        let targetUser = await User.findById(userId).catch(() => null);
+        
+        //if the user is not found by their MongoDB id, it'll try to find them by their personal id
+        if(!targetUser){
+            targetUser = await User.findOne({id: parseInt(userId)});
+        }
+        
         //if the user is not found, it'll return a 404 error
-        if(!user) {
+        if(!targetUser){
             return res.status(404).json({ message: 'User not found' });
         }
 
+        //checks if the user is an admin or the user themselves
+        if(requester.role !== 'admin'){
+            if(parseInt(requester.id) !== parseInt(targetUser.id)){
+                return res.status(403).json({ message: 'You do not have permission to change this password' });
+            }
+        }
+        
+        //gets the current and new password from the request body
+        const { currentPassword, newPassword } = req.body;
+        if(!newPassword){
+            return res.status(400).json({ message: 'New password is required' });
+        }
+        
+        //if the user is not an admin, they must provide their current password to change it
+        if(requester.role !== 'admin'){
+            if(!currentPassword){
+                return res.status(400).json({ message: 'Current password is required' });
+            }
+            //checks if the current password provided matches the one in the database
+            const isMatch = await bcrypt.compare(currentPassword, targetUser.password);
+            if(!isMatch){
+                return res.status(400).json({ message: 'Current password is incorrect' });
+            }
+        }
+
+        //hashes the new password
+        const hashPass = await bcrypt.hash(newPassword, 10);    
+
         //updates the user's password and lastPasswordChange date
-        user.password = hashPass;
-        user.lastPasswordChange = new Date();
+        targetUser.password = hashPass;
+        targetUser.lastPasswordChange = new Date();
 
         //saves the updated user information to the database
-        await user.save();
+        await targetUser.save();
         res.status(200).json({ message: 'Password changed successfully' });
 
     }catch (error) {
@@ -130,7 +157,7 @@ module.exports.changePassword = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Server error when changing password' });
     }
-};*/
+};
 
 //Update operations
 module.exports.updateUser = async (req, res) => {
@@ -159,6 +186,13 @@ module.exports.updateUser = async (req, res) => {
         user.role = updates.role ?? user.role; 
 
         //could add more fields here like hair type, hair color...
+        //if the password is being updated, it hashes the new password and updates the lastPasswordChange date
+        if(updates.password && updates.password.trim() !== ""){
+            //hashes the new password
+            user.password = await bcrypt.hash(updates.password, 10);
+            //changes the date in which the password was last changed to the current date and time
+            user.lastPasswordChange = new Date();
+        }
 
         //saves the updated user information to the database
         await user.save();
