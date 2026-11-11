@@ -5,6 +5,15 @@ const tokenValidator = require("../middleware/tokenValidator");
 
 const router = express.Router();
 
+//function requireAdmin will check if a user is an admin before allowing them to access certain routes
+/*function requireAdmin(req, res, next) {
+    if (!req.user || req.user.role !== "admin") {
+        return res.status(403).json({ message: "Admin access required." });
+    }
+    next();
+    //if used, need to add requireAdmin to routes below inbetween tokenValidator and the function
+}*/
+
 //routes for the user actions, createUser, getAllUsers, and getUser
 //uses POST request to the /api/users endpoint to create a new user
 router.post("/", tokenValidator, createUser);
