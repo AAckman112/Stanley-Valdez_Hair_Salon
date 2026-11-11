@@ -36,7 +36,7 @@ module.exports.authenticateUser = async (req, res) => {
         //waits for the comparison to finish before moving on; parameters are the password given first and the actual password        
         const isMatch = await bcrypt.compare(password, user.password);
 
-        //for unhashed passwords still in database; uncomment this and recomment the one above
+        //all passwords are now hashed, keeping this for the memories
         //const isMatch = password === user.password;
 
         //throws an error if the password does not match
