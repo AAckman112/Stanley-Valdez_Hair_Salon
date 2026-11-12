@@ -1,7 +1,53 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import "./Login.css"
 
 function Login() {
+    const navigate = useNavigate();
+    const [message, setMessage] = useState('');
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setMessage('');
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                setMessage(data.message || 'Login failed. Please try again.');
+                return;
+            }
+
+            switch ((data.role || '').toLowerCase()) {
+                case 'admin':
+                    navigate('/admin');
+                    break;
+                case 'stylist':
+                    navigate('/stylist');
+                    break;
+                case 'client':
+                    navigate('/client');
+                    break;
+                default:
+                    setMessage('Your account has no recognized role.');
+                    break;
+            }
+        } catch (error) {
+            console.error(error);
+            setMessage('Could not reach the server. Please try again.');
+        }
+    }
+
     return (
     <div class="page">
         <section class="left">
@@ -14,7 +60,7 @@ function Login() {
             </header>
             
             <main>
-                <form class="card" id="login-form">
+                <form class="card" id="login-form" onSubmit={handleSubmit}>
                     <h1>Welcome back</h1>
                     <p class="sub">Sign in to manage your reservations, salon profile, and preferred stylist settings.</p>
                     <div class="field">
@@ -39,7 +85,7 @@ function Login() {
                         Remember me on this device
                     </label>
 
-                    <p id="login-message" role="status"></p>
+                    <p id="login-message" role="status">{message}</p>
                     <button class="submit" type="submit">Sign in to Atelier</button>
                     <p class="signup">First time visiting? <a href="#">Create an account</a></p>
                 </form>
