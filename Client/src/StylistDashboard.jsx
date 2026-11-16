@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './StylistDashboard.css'
 
 function StylistDashboard() {
+    const navigate = useNavigate();
+
+    //sends the user back to the login page
+    function logout() {
+        navigate('/');
+    }
+
     return(
     <body>
+
         <header>
             <strong>Stanley Valdez Salon</strong>
-            
+
             <nav>
-                <a href="#" class="active">Overview</a>
+                <a href="#" className="active">Overview</a>
                 <a href="#">Appointments</a>
                 <a href="#">Gallery</a>
                 <a href="#">Clients</a>
@@ -15,91 +25,99 @@ function StylistDashboard() {
 
             <div>
                 <span>User Name</span>
-                <a href="#" class="btn-light">Settings</a>
+                <a href="#" className="btn-light">Settings</a>
+                <button id="logoutBtn" className="btn-light" onClick={logout}>Logout</button>
             </div>
         </header>
-        
+
+
         <main>
+
+            {/* L Col */}
             <div>
+
                 <h1>Welcome back, Stylist</h1>
                 <p>View details, manage appointments, or adjust your preferences.</p>
-                <section class="appointment-card">
+
+                {/* Appointment card */}
+                <section className="appointment-card">
                     <div>
                         <span>Status</span>
                         <span>Reservation #</span>
                     </div>
+
                     <h2>Appointment</h2>
+
                     <div>
                         <span>Date and time</span>
                         <span>Estimated duration</span>
                     </div>
-                    
-                    <div class="appointment-stylist">
+
+                    <div className="appointment-stylist">
                         <p>Client Name</p>
                         <p>Client Contact</p>
                         <p>Client Preferences</p>
                     </div>
-                    
+
                     <div>
-                        <a href="#" class="btn-light">Reschedule</a>
-                        <a href="#" class="btn-text">Cancel</a>
+                        <a href="#" className="btn-light">Reschedule</a>
+                        <a href="#" className="btn-text">Cancel</a>
                     </div>
                 </section>
 
-      <section>
-        <h2>History</h2>
-        <p>Your past appointments.</p>
+                {/* History */}
+                <section>
+                    <h2>History</h2>
+                    <p>Your past appointments.</p>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Date &amp; Time</th>
-              <th>Services</th>
-              <th>Client</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Date</td>
-              <td>Service</td>
-              <td>Client</td>
-              <td><a href="#">Rebook</a></td>
-            </tr>
-            <tr>
-              <td>Date</td>
-              <td>Service</td>
-              <td>Client</td>
-              <td><a href="#">Rebook</a></td>
-            </tr>
-            <tr>
-              <td>Date</td>
-              <td>Services</td>
-              <td>Client</td>
-              <td><a href="#">Rebook</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date &amp; Time</th>
+                                <th>Services</th>
+                                <th>Client</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Date</td>
+                                <td>Service</td>
+                                <td>Client</td>
+                                <td><a href="#">Rebook</a></td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>Service</td>
+                                <td>Client</td>
+                                <td><a href="#">Rebook</a></td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>Services</td>
+                                <td>Client</td>
+                                <td><a href="#">Rebook</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
 
-    </div>
-  </main>
+            </div>
+        </main>
 
 
-  <footer>
-    <p>&copy; 2026 Stanley Valdez Salon.</p>
-    <nav>
-      <a href="#">Overview</a>
-      <a href="#">Appointments</a>
-      <a href="#">Careers</a>
-      <a href="#">Sign Out</a>
-    </nav>
-  </footer>
+        <footer>
+            <p>&copy; 2026 Stanley Valdez Salon.</p>
+            <nav>
+                <a href="#">Overview</a>
+                <a href="#">Appointments</a>
+                <a href="#">Careers</a>
+                <a href="#">Sign Out</a>
+            </nav>
+        </footer>
 
-</body>
+    </body>
     )
-
-
 }
 
 export default StylistDashboard;

@@ -25,7 +25,7 @@ app.use(cors());
 
 //says that all the html files will be in this folder
 //when getting to react this will be commented out
-app.use(express.static(path.join(__dirname, "../Client/public")));
+//app.use(express.static(path.join(__dirname, "../Client/public")));
 
 //all authentication routes will have the form /api/auth/...
 app.use("/api/auth", authRoutes);

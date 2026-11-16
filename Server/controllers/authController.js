@@ -27,6 +27,8 @@ module.exports.authenticateUser = async (req, res) => {
 
         //throws an error if the user is not found in the database
         if(!user) {
+            //TEMP DEBUG: shows exactly what username the server received (quotes reveal stray spaces/capitals)
+            console.log(`[login debug] no user found with username ${JSON.stringify(username)}`);
             //returns a 401 error to the user, which is the unauthorized error code
             //this code means the user is not authorized to access the requested resource 
             return res.status(401).json({ message: "Invalid username or password" });
@@ -42,6 +44,8 @@ module.exports.authenticateUser = async (req, res) => {
 
 
         if(!isMatch) {
+            //TEMP DEBUG: user exists but the password did not match the stored hash (length only, never the password itself)
+            console.log(`[login debug] user ${JSON.stringify(username)} found, password mismatch (received ${password.length} characters, trimmed ${password.trim().length})`);
             //if its not a match, returns an error 401, which is the missing authorization error code
             return res.status(401).json({ message: "Invalid username or password" });
         }
