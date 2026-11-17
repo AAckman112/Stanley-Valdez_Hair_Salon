@@ -5,9 +5,13 @@ import './StylistDashboard.css'
 function StylistDashboard() {
     const navigate = useNavigate();
 
-    //sends the user back to the login page
+    //clears the stored credentials and sends the user back to the login page
     function logout() {
-        navigate('/');
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('role');
+        navigate('/', { replace: true });
     }
 
     return(
