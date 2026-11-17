@@ -28,6 +28,11 @@ function Login() {
                 return;
             }
 
+            localStorage.setItem("authToken", data.token);
+            localStorage.setItem("userRole", data.role);
+            sessionStorage.setItem("authToken", data.token);
+            sessionStorage.setItem("userRole", data.role);
+
             switch ((data.role || '').toLowerCase()) {
                 case 'admin':
                     navigate('/admin');
