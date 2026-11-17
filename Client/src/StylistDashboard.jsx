@@ -7,10 +7,10 @@ function StylistDashboard() {
 
     //clears the stored credentials and sends the user back to the login page
     function logout() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('role');
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userRole');
+        sessionStorage.removeItem('authToken');
+        sessionStorage.removeItem('userRole');
         navigate('/', { replace: true });
     }
 
