@@ -1,0 +1,76 @@
+/* classes start with "um-" so they dont mess up the other css files 
+also, this is just a simple css file, once every page is finalized/styled, ill expand this*/
+
+.um-message {
+  padding: 10px 15px;
+  margin: 15px 0;
+  background-color: white;
+  border-left: 3px solid rosybrown;
+}
+
+.um-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.um-form h2 {
+  width: 100%;
+}
+
+
+.um-form .um-input {
+  width: 170px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #e7e2da;
+  border-radius: 4px;
+  background-color: white;
+  font: inherit;
+  font-size: 14px;
+}
+
+.um-btn {
+  padding: 9px 14px;
+  margin-right: 6px;
+  border: 1px solid rosybrown;
+  background-color: rosybrown;
+  color: white;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.um-btn-light {
+  background-color: white;
+  color: black;
+}
+
+.um-btn-danger {
+  background-color: #a14a4a;
+  border-color: #a14a4a;
+}
+
+.um-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* the pink box */
+.um-box {
+  background-color: rosybrown;
+  color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* re-add dark text since i just changed the pink box >:| */
+.um-box table,
+.um-box .um-form,
+.um-box .um-message {
+  color: black;
+}

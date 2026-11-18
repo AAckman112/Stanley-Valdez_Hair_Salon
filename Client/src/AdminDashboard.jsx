@@ -1,9 +1,26 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
+import UserManagement from './UserManagement.jsx'
 import './AdminDashboard.css'
+
+// reads the logged in user's info (username, role) out of the saved login token
+function getTokenInfo() {
+    const token = localStorage.getItem('authToken');
+    if (!token) return null;
+    try {
+        // a token is three parts joined by dots; the middle part holds the data
+        const payload = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+        return JSON.parse(atob(payload));
+    } catch {
+        return null;
+    }
+}
 
 function AdminDashboard() {
     const navigate = useNavigate();
+    const tokenInfo = getTokenInfo();
+
+    // anyone who isn't a logged in admin is sent back to the login page
+    if (!tokenInfo || tokenInfo.role !== 'admin') return <Navigate to="/" replace />;
 
     //clears the stored credentials and sends the user back to the login page
     function logout() {
@@ -14,8 +31,8 @@ function AdminDashboard() {
         navigate('/', { replace: true });
     }
 
-    return(
-    <body>
+    return (
+    <>
 
         <header>
             <strong>Stanley Valdez Salon</strong>
@@ -24,11 +41,11 @@ function AdminDashboard() {
                 <a href="#" className="active">Overview</a>
                 <a href="#">Appointments</a>
                 <a href="#">Gallery</a>
-                <a href="#">Users</a>
+                <a href="#users">Users</a>
             </nav>
 
             <div>
-                <span>User Name</span>
+                <span>{tokenInfo.username}</span>
                 <a href="#" className="btn-light">Settings</a>
                 <button id="logoutBtn" className="btn-light" onClick={logout}>Logout</button>
             </div>
@@ -36,14 +53,20 @@ function AdminDashboard() {
 
 
         <main>
-
-            {/* L Col */}
             <div>
 
                 <h1>Welcome back, Admin</h1>
                 <p>View details, manage appointments, or adjust your preferences.</p>
 
-                {/* Appointment card */}
+                {/* User CRUD: the admin can add, edit and delete users*/}
+                <section id="users">
+                    <UserManagement currentUsername={tokenInfo.username} />
+                </section>
+
+                {/* Appointment card (placeholder until Epic 4)
+                Will be changing this into an appointment CRUD 
+                card? Basically changing it to a similar structure 
+                as the user CRUD but to edit, cancel, or add appointments. */}
                 <section className="appointment-card">
                     <div>
                         <span>Up Next: </span>
@@ -71,7 +94,7 @@ function AdminDashboard() {
                     </div>
                 </section>
 
-                {/* History */}
+                {/* History (placeholder until Epic 4) */}
                 <section>
                     <h2>History</h2>
                     <p>Appointments Completed in the last 24 hours: </p>
@@ -122,11 +145,11 @@ function AdminDashboard() {
                 <a href="#">Overview</a>
                 <a href="#">Appointments</a>
                 <a href="#">Careers</a>
-                <a href="#">Sign Out</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); logout(); }}>Sign Out</a>
             </nav>
         </footer>
 
-    </body>
+    </>
     )
 }
 
