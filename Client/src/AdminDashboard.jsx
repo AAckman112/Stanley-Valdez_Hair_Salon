@@ -22,10 +22,13 @@ function AdminDashboard() {
     // anyone who isn't a logged in admin is sent back to the login page
     if (!tokenInfo || tokenInfo.role !== 'admin') return <Navigate to="/" replace />;
 
-    // log out: remove the token, then go to the login page
+    //clears the stored credentials and sends the user back to the login page
     function logout() {
         localStorage.removeItem('authToken');
-        navigate('/');
+        localStorage.removeItem('userRole');
+        sessionStorage.removeItem('authToken');
+        sessionStorage.removeItem('userRole');
+        navigate('/', { replace: true });
     }
 
     return (

@@ -30,6 +30,11 @@ function Login() {
             //added this so that the token is saved in localStorage and can be used for authentication in other parts of the app
             localStorage.setItem('authToken', data.token);
 
+            localStorage.setItem("authToken", data.token);
+            localStorage.setItem("userRole", data.role);
+            sessionStorage.setItem("authToken", data.token);
+            sessionStorage.setItem("userRole", data.role);
+
             switch ((data.role || '').toLowerCase()) {
                 case 'admin':
                     navigate('/admin');
