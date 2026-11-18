@@ -27,8 +27,6 @@ function Login() {
                 setMessage(data.message || 'Login failed. Please try again.');
                 return;
             }
-            //added this so that the token is saved in localStorage and can be used for authentication in other parts of the app
-            localStorage.setItem('authToken', data.token);
 
             localStorage.setItem("authToken", data.token);
             localStorage.setItem("userRole", data.role);
