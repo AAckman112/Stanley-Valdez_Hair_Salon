@@ -117,7 +117,7 @@ module.exports.changePassword = async (req, res) => {
         }
 
         //checks if the user is an admin or the user themselves
-        if(requester.role !== 'admin'){
+        if(requester.role !== 'admin' && requester.role !== 'client'){
             if(parseInt(requester.id) !== parseInt(targetUser.id)){
                 return res.status(403).json({ message: 'You do not have permission to change this password' });
             }
